@@ -548,7 +548,7 @@ class fuse_operations(ctypes.Structure):
 
         ('lock', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, ctypes.POINTER(fuse_file_info),
-            ctypes.c_int, ctypes.c_voidp)),
+            ctypes.c_int, ctypes.c_void_p)),
 
         ('utimens', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, ctypes.POINTER(c_utimbuf))),
