@@ -429,11 +429,11 @@ else:
 
 class fuse_context(ctypes.Structure):
     _fields_ = [
-        ('fuse', ctypes.c_voidp),
+        ('fuse', ctypes.c_void_p),
         ('uid', c_uid_t),
         ('gid', c_gid_t),
         ('pid', c_pid_t),
-        ('private_data', ctypes.c_voidp)]
+        ('private_data', ctypes.c_void_p)]
 
 _libfuse.fuse_get_context.restype = ctypes.POINTER(fuse_context)
 
@@ -447,7 +447,7 @@ class fuse_operations(ctypes.Structure):
             ctypes.c_int, ctypes.c_char_p, ctypes.POINTER(ctypes.c_byte),
             ctypes.c_size_t)),
 
-        ('getdir', ctypes.c_voidp),    # Deprecated, use readdir
+        ('getdir', ctypes.c_void_p),    # Deprecated, use readdir
 
         ('mknod', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, c_mode_t, c_dev_t)),
@@ -473,7 +473,7 @@ class fuse_operations(ctypes.Structure):
         ('truncate', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, c_off_t)),
 
-        ('utime', ctypes.c_voidp),     # Deprecated, use utimens
+        ('utime', ctypes.c_void_p),     # Deprecated, use utimens
         ('open', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, ctypes.POINTER(fuse_file_info))),
 
@@ -514,9 +514,9 @@ class fuse_operations(ctypes.Structure):
         ('readdir', ctypes.CFUNCTYPE(
             ctypes.c_int,
             ctypes.c_char_p,
-            ctypes.c_voidp,
+            ctypes.c_void_p,
             ctypes.CFUNCTYPE(
-                ctypes.c_int, ctypes.c_voidp, ctypes.c_char_p,
+                ctypes.c_int, ctypes.c_void_p, ctypes.c_char_p,
                 ctypes.POINTER(c_stat), c_off_t),
             c_off_t,
             ctypes.POINTER(fuse_file_info))),
@@ -528,8 +528,8 @@ class fuse_operations(ctypes.Structure):
             ctypes.c_int, ctypes.c_char_p, ctypes.c_int,
             ctypes.POINTER(fuse_file_info))),
 
-        ('init', ctypes.CFUNCTYPE(ctypes.c_voidp, ctypes.c_voidp)),
-        ('destroy', ctypes.CFUNCTYPE(ctypes.c_voidp, ctypes.c_voidp)),
+        ('init', ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_void_p)),
+        ('destroy', ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_void_p)),
 
         ('access', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, ctypes.c_int)),
@@ -548,7 +548,7 @@ class fuse_operations(ctypes.Structure):
 
         ('lock', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, ctypes.POINTER(fuse_file_info),
-            ctypes.c_int, ctypes.c_voidp)),
+            ctypes.c_int, ctypes.c_void_p)),
 
         ('utimens', ctypes.CFUNCTYPE(
             ctypes.c_int, ctypes.c_char_p, ctypes.POINTER(c_utimbuf))),
